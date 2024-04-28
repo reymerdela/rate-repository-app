@@ -1,20 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import Main from './src/components/Main';
+import { NativeRouter } from 'react-router-native';
+import { Roboto_400Regular } from '@expo-google-fonts/roboto';
+import { useFonts } from 'expo-font';
 export default function App() {
+  const [fontsLoaded, fontError] = useFonts({
+    Roboto_400Regular,
+  });
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Nueva App</Text>
+    <>
+      <NativeRouter>
+        <Main />
+      </NativeRouter>
       <StatusBar style="auto" />
-    </View>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
